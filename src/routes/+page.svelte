@@ -1,2 +1,17 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import { onMount } from 'svelte'
+    var jobs = []
+    onMount(async () => {
+        const response = await fetch("http://localhost:8000")
+        jobs = await response.json()
+    })
+</script>
+
+<section>
+    <h2>Jobs:</h2>
+    <ul>
+    {#each jobs as job}
+        <li><a href={`/job?job=${encodeURIComponent(job)}`}>{job}</a></li>
+    {/each}
+    </ul>
+</section>
