@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
 
     var job = null
+    var builds = []
     onMount(async () => {
 		const selectedJob = new URLSearchParams(window.location.search).get("job")
         if (selectedJob == null) {
@@ -11,7 +12,18 @@
 
         const response = await fetch(`http://localhost:8000/job/${selectedJob}`)
         job = await response.json()
+        builds = job["builds"].sort(buildSorter)
 	});
+
+    function buildSorter(a, b) {
+        if (parseInt(a["build"]) < parseInt(b["build"])) {
+            return -1
+        }
+        if (parseInt(a["build"]) > parseInt(b["build"])) {
+            return 1
+        }
+        return 0
+    }
 </script>
 
 <section>
@@ -24,8 +36,8 @@
         <p>median duration (min): {job["median"]}</p>
         <p>build samples: {job["build_samples"]}</p>
         <ul>
-        {#each job["builds"] as build}
-            <li><a href={`build?id=${build["id"]}`}>{build["id"]}</a></li>
+        {#each builds as build}
+            <li><a href={`build?job=${build["job"]}&number=${build["build"]}`}>{build["id"]}</a></li>
         {/each}
         </ul>
     {/if}
