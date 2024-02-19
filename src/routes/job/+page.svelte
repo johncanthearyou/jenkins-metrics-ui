@@ -18,14 +18,14 @@
     {#if job == null}
         <p>loading job...</p>
     {:else}
-        <h2>{job["name"]}</h2>
+        <h2>Job: {job["name"]}</h2>
         <p>mean duration (min): {job["mean"]}</p>
         <p>duration st. deviation (min): {job["st_dev"]}</p>
         <p>median duration (min): {job["median"]}</p>
         <p>build samples: {job["build_samples"]}</p>
         <ul>
         {#each job["builds"] as build}
-            <li>{build["id"].replace("#", " #")}</li>
+            <li><a href={`build?id=${build["id"]}`}>{build["id"]}</a></li>
         {/each}
         </ul>
     {/if}
