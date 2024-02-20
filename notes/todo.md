@@ -1,2 +1,10 @@
 TODO:
-- [ ] Create build specific page (include detailed stage data)
+- [X] Build Page: Create build specific page (include detailed stage data)
+- [ ] Jobs Page: Create search bar for jobs page
+- [ ] Implement css styling (either raw or tailwind)
+- [ ] Job Page: display core devops metrics wanted 
+- [ ] Build Page: display links to upstream and downstream jobs (immediate only)
+- [ ] Create list template page with search and infinite scroll 
+- [ ] Builds Page: Implement using list template
+- [ ] Jobs Page: Reimplement using list template
+- [ ] Create tests template page for use as an extension interface for a build

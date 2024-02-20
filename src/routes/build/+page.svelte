@@ -38,20 +38,25 @@
             <p><b>Duration:</b> {(build["durationMillis"]/60000).toFixed(3)}min</p>
             <p><b>End:</b>{new Date(build["endTimeMillis"]).toLocaleTimeString()}, {new Date(build["endTimeMillis"]).toDateString()}</p>
             <p><b>Paused For:</b> {(build["pauseDurationMillis"]/60000).toFixed(3)}min</p>
+            <h4>Stage Data</h4>
+            <ul>
+                {#each stages as stage}
+                    <p><b>{stage["name"]}</b></p>
+                    <ul>
+                        <p><b>Start:</b>{new Date(stage["startTimeMillis"]).toLocaleTimeString()}, {new Date(stage["startTimeMillis"]).toDateString()}</p>
+                        <p><b>Duration:</b> {(stage["durationMillis"]/60000).toFixed(3)}min</p>
+                        <p><b>End:</b>{new Date(parseInt(stage["startTimeMillis"])+parseInt(stage["durationMillis"])).toLocaleTimeString()}, {new Date(parseInt(stage["startTimeMillis"])+parseInt(stage["durationMillis"])).toDateString()}</p>
+                        <p><b>Paused For:</b> {(stage["pauseDurationMillis"]/60000).toFixed(3)}min</p>
+                    </ul>
+                {/each}
+            </ul>
         </ul>
-        <h3>Stage Data</h3>
-        <ul>
-            {#each stages as stage}
-                <p><b>{stage["name"]}</b></p>
-                <ul>
-                    <p><b>Start:</b>{new Date(stage["startTimeMillis"]).toLocaleTimeString()}, {new Date(stage["startTimeMillis"]).toDateString()}</p>
-                    <p><b>Duration:</b> {(stage["durationMillis"]/60000).toFixed(3)}min</p>
-                    <p><b>End:</b>{new Date(parseInt(stage["startTimeMillis"])+parseInt(stage["durationMillis"])).toLocaleTimeString()}, {new Date(parseInt(stage["startTimeMillis"])+parseInt(stage["durationMillis"])).toDateString()}</p>
-                    <p><b>Paused For:</b> {(stage["pauseDurationMillis"]/60000).toFixed(3)}min</p>
-                </ul>
-            {/each}
-        </ul>
-
     {/if}
     <button on:click={() => window.location=`/job?job=${build["job"]}`}> back to {job}</button>
 </section>
+
+<style>
+    p {
+        line-height: 10%
+    }
+</style>

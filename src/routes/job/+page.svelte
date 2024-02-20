@@ -37,7 +37,7 @@
         <p>build samples: {job["build_samples"]}</p>
         <ul>
         {#each builds as build}
-            <li><a href={`build?job=${build["job"]}&number=${build["build"]}`}>{build["id"]}</a></li>
+            <li><a href={`build?job=${encodeURIComponent(build["job"])}&number=${build["build"]}`}>{build["id"]}</a></li>
         {/each}
         </ul>
     {/if}
