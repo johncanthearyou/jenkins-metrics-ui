@@ -8,3 +8,4 @@ TODO:
 - [ ] Builds Page: Implement using list template
 - [ ] Jobs Page: Reimplement using list template
 - [ ] Create tests template page for use as an extension interface for a build
+- [ ] Implement tailwind css
